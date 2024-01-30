@@ -690,7 +690,7 @@ const change = (users, now) => {
         res.json({message:'investment is no a number'})
         // return
       }
-      else if (user.investment === []) {
+      else if (user.investment == []) {
         console.log('investment is not empty array')
         res.json({message:'investment is an empty array'})
         // return
