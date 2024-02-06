@@ -74,19 +74,19 @@ app.get('/api/verify', async (req, res) => {
 // register route 
 app.post('/api/register', async (req, res) => {
     const referringUser = await User.findOne({username: req.body.referralLink})
-    const now = new Date()
-  try {
+  const now = new Date()
     if(referringUser){
-      await User.updateOne({username : req.body.referralLink},{
-        $push: { referred: {
-          firstname:req.body.firstName,
-          lastname: req.body.lastName,
-          email: req.body.email,
-          date: now.toLocaleString(),
-          bonus:'10%'
-        }},
-      })
-    }
+        await User.updateOne({username : req.body.referralLink},{
+          $push: { referred: {
+            firstname:req.body.firstName,
+            lastname: req.body.lastName,
+            email: req.body.email,
+            date: now.toLocaleString(),
+            bonus:'10%'
+          }},
+        })
+      }
+  try {
      await User.create({
       firstname: req.body.firstName,
       lastname: req.body.lastName,
