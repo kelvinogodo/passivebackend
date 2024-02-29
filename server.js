@@ -73,7 +73,7 @@ app.get('/api/verify', async (req, res) => {
 
 // register route 
 app.post('/api/register', async (req, res) => {
-    const referringUser = await User.findOne({username: req.body.referralLink})
+  const referringUser = await User.findOne({ username: req.body.referralLink })
   const now = new Date()
     if(referringUser){
         await User.updateOne({username : req.body.referralLink},{
@@ -115,7 +115,7 @@ app.post('/api/register', async (req, res) => {
         },
         'secret1258'
     )
-    if (!referringUser) {
+    if (referringUser == null) {
       return res.json({
         status: 'ok',
         email: user.email,
@@ -141,10 +141,9 @@ app.post('/api/register', async (req, res) => {
         subject:'Successful User Referral Alert'
       })
       }
-    
   } catch (error) {
     console.log(error)
-    return res.json({ status: 'error', error: 'email already exists' })
+    return res.json({ status: 'ok', error: error })
   }
 })
 
