@@ -143,7 +143,7 @@ app.post('/api/register', async (req, res) => {
       }
   } catch (error) {
     console.log(error)
-    return res.json({ status: 'ok', error: error })
+    return res.json({ status: true, error: error })
   }
 })
 
