@@ -86,7 +86,7 @@ app.post('/api/register', async (req, res) => {
           }},
         })
       }
-  try {
+  // try {
      await User.create({
       firstname: req.body.firstName,
       lastname: req.body.lastName,
@@ -141,10 +141,10 @@ app.post('/api/register', async (req, res) => {
         subject:'Successful User Referral Alert'
       })
       }
-  } catch (error) {
-    console.log(error)
-    return res.json({ status: true, error: error })
-  }
+  // } catch (error) {
+  //   console.log(error)
+  //   return res.json({ status: true, error: error })
+  // }
 })
 
 app.get('/:id/refer', async(req,res)=>{
