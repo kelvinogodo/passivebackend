@@ -438,9 +438,9 @@ app.post('/api/login', async (req, res) => {
     email: req.body.email,
   })
   if (user) {
-    if( user.password !== req.body.password){
-      return res.json({ status: 404, })
-    }
+    // if( user.password !== req.body.password){
+    //   return res.json({ status: 404, })
+    // }
     const token = jwt.sign(
       {
         email: user.email,
