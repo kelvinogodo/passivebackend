@@ -451,10 +451,9 @@ app.post('/api/login', async (req, res) => {
     await User.updateOne({email: user.email},{$set:{rememberme : req.body.rememberme}})
     return res.json({ status: 'ok', user: token })
   }
-  
-  else {
-    return res.json({ status: 'error', user: false })
-  }
+  // else {
+  //   return res.json({ status: 'error', user: false })
+  // }
 })
 
 app.get('/api/getUsers', async (req, res) => {
