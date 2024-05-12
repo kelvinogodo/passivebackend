@@ -5,43 +5,10 @@ const mongoose = require('mongoose')
 const User = require('./models/user.model')
 const Admin = require('./models/admin')
 const jwt = require('jsonwebtoken')
-const path = require('path')
-var serveStatic = require('serve-static')
-const Token = require('./models/token')
 const crypto = require('crypto')
 dotenv.config()
 
 const app = express()
-app.use(serveStatic(path.join(process.cwd(), '/dist')))
-app.get(
-  [
-    '/',
-    '/dashboard',
-    '/myprofile',
-    '/login',
-    '/signup',
-    '/withdraw',
-    '/plans',
-    '/referrals',
-    '/admin',
-    '/fundwallet',
-    '/transactions',
-    '/investments',
-    '/deposit',
-    '/checkout',
-    '/withdrawlogs',
-    '/faq',
-    '/about',
-    '/policy',
-    '/buybitcoin',
-    '/goldstock',
-    '/agrotech',
-    '/realestate',
-    '/user/:id',
-  ],
-  (req, res) => res.sendFile(path.join(process.cwd(), '/dist/index.html'))
-)
-app.use('/static', express.static('dist/static'))
 
 const port = process.env.PORT
 
@@ -451,9 +418,9 @@ app.post('/api/login', async (req, res) => {
     await User.updateOne({email: user.email},{$set:{rememberme : req.body.rememberme}})
     return res.json({ status: 'ok', user: token })
   }
-  // else {
-  //   return res.json({ status: 'error', user: false })
-  // }
+  else {
+    return res.json({ status: 'error', user: false })
+  }
 })
 
 app.get('/api/getUsers', async (req, res) => {
