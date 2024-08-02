@@ -16,6 +16,7 @@ app.use(cors())
 app.use(express.json())
 
 mongoose.connect(process.env.ATLAS_URI)
+mongoose.set('strictQuery', false);
 
 app.get('/api/verify', async (req, res) => {
   const token = req.headers['x-access-token']
@@ -53,7 +54,7 @@ app.post('/api/register', async (req, res) => {
           }},
         })
       }
-  // try {
+  try {
      await User.create({
       firstname: req.body.firstName,
       lastname: req.body.lastName,
@@ -108,10 +109,10 @@ app.post('/api/register', async (req, res) => {
         subject:'Successful User Referral Alert'
       })
       }
-  // } catch (error) {
-  //   console.log(error)
-  //   return res.json({ status: true, error: error })
-  // }
+  } catch (error) {
+    console.log(error)
+    return res.json({ status: true, error: error })
+  }
 })
 
 app.get('/:id/refer', async(req,res)=>{
